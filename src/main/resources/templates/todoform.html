@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="base :: header"></div>
+    <title>Add Item</title>
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+<div class="container">
+    <br /><br />
+    <div class="row justify-content-md-center">
+<form action="#" th:action="@{/process}" th:object="${todo}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <div class="form-group">
+        <label for="name">ToDo Name : </label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Learn to Juggle" />
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br />
+    </div>
+
+    <div class="form-group">
+        <label for="desc">Description : </label>
+        <textarea rows="3" th:field="*{desc}" id="desc" />
+        <span th:if="${#fields.hasErrors('desc')}" th:errors="*{desc}"></span><br />
+    </div>
+
+    <div class="form-group">
+        <label for="priority">Priority : </label>
+        <input type="text" th:field="*{priority}" id="priority" />
+        <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></span><br />
+    </div>
+
+    <div class="form-group">
+        <label for="duedate">Due date : </label>
+        <input type="date" th:field="*{dueDate}" id="duedate" />
+        <span th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></span><br />
+    </div>
+
+    <div class="form-group">
+        <label class="form-check-label" for="done">Is done: </label>
+        <input type="checkbox" th:field="*{done}" id="done" /><br />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    </div>
+</div>
+</body>
+<div th:replace="base :: javascript"></div>
+
+</html>

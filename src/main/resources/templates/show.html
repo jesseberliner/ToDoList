@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="base :: header"></div>
+    <title>Show Detail</title>
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+
+<div class="container ">
+    <br /><br />
+<div class="card mx-auto" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${todo.name}"></h5>
+        <h6 class="card-subtitle mb-2 text-muted" th:text="${todo.priority}"></h6>
+        <p class="card-text" th:text="${todo.desc}"></p>
+        <!--<a th:href="@{/delete/{id}(id=${todo.id})}" class="card-link">Another link</a>-->
+        <h6 class="card-subtitle mb-2 text-muted glyphicon" th:text="${todo.done} ? '&#xe013;' : '&#xe014;'"></h6><br />
+        <h6 class="card-subtitle mb-2 text-muted glyphicon" th:text="${todo.done} ? '&#xE8FB;' : '&#xE711;'"></h6><br />
+
+        <span th:if="${todo.done}">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true">Yes</span>
+        </span>
+        <span th:unless="${todo.done}">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true">No</span>
+        </span>
+
+    </div>
+</div>
+    <br />
+    <br />
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>Due Date</th>
+        <th>Is Completed</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="todo : ${todos}">
+        <td th:text="${todo.name}"></td>
+        <td th:text="${todo.desc}"></td>
+        <td th:text="${todo.priority}"></td>
+        <td th:text="${todo.dueDate}"></td>
+        <td th:text="${todo.done} ? 'Yes' : 'No'"></td>
+        <td>
+            <a th:href="@{/update/{id}(id=${todo.id})}">Update</a> -
+            <a th:href="@{/detail/{id}(id=${todo.id})}">Details</a> -
+            <a th:href="@{/delete/{id}(id=${todo.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+<div th:replace="base :: javascript"></div>
+
+</html>
