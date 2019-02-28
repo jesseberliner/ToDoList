@@ -15,14 +15,12 @@
         <h6 class="card-subtitle mb-2 text-muted" th:text="${todo.priority}"></h6>
         <p class="card-text" th:text="${todo.desc}"></p>
         <!--<a th:href="@{/delete/{id}(id=${todo.id})}" class="card-link">Another link</a>-->
-        <h6 class="card-subtitle mb-2 text-muted glyphicon" th:text="${todo.done} ? '&#xe013;' : '&#xe014;'"></h6><br />
-        <h6 class="card-subtitle mb-2 text-muted glyphicon" th:text="${todo.done} ? '&#xE8FB;' : '&#xE711;'"></h6><br />
 
         <span th:if="${todo.done}">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true">Yes</span>
+            <img th:src="@{/images/check.png}" alt="Done">
         </span>
         <span th:unless="${todo.done}">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true">No</span>
+            <img th:src="@{/images/ex.png}" alt="Not done">
         </span>
 
     </div>
@@ -56,7 +54,7 @@
     </tbody>
 </table>
 </div>
-</body>
 <div th:replace="base :: javascript"></div>
+</body>
 
 </html>

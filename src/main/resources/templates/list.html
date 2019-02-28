@@ -24,7 +24,14 @@
                 <td th:text="${todo.desc}"></td>
                 <td th:text="${todo.priority}"></td>
                 <td th:text="${todo.dueDate}"></td>
-                <td th:text="${todo.done} ? 'Yes' : 'No'"></td>
+                <td>
+                    <span th:if="${todo.done}">
+                        <img th:src="@{/images/check.png}" alt="Done">
+                    </span>
+                    <span th:unless="${todo.done}">
+                        <img th:src="@{/images/ex.png}" alt="Not done">
+                 </span>
+                </td>
                 <td>
                     <a th:href="@{/update/{id}(id=${todo.id})}">Update</a> -
                     <a th:href="@{/detail/{id}(id=${todo.id})}">Details</a> -
@@ -34,7 +41,7 @@
         </tbody>
     </table>
 </div>
-</body>
 <div th:replace="base :: javascript"></div>
+</body>
 
 </html>
